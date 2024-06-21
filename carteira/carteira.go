@@ -3,6 +3,9 @@ package main
 import "fmt"
 
 type Bitcoin int
+type Stringer interface {
+	String() string
+}
 
 type Carteira struct {
 	saldo Bitcoin
@@ -16,10 +19,10 @@ func (c *Carteira) Saldo() Bitcoin {
 	return c.saldo
 }
 
-type Stringer interface {
-	String() string
-}
-
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
+}
+
+func (c *Carteira) Retirar(quantidade Bitcoin) {
+	c.saldo -= quantidade
 }

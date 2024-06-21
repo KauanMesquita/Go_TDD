@@ -2,15 +2,24 @@ package main
 
 import "fmt"
 
+type Bitcoin int
+
 type Carteira struct {
-	saldo int
+	saldo Bitcoin
 }
 
-func (c *Carteira) Depositar(quantidade int) {
-	fmt.Printf("o endereço do saldo no Depositar é %v \n", &c.saldo)
+func (c *Carteira) Depositar(quantidade Bitcoin) {
 	c.saldo += quantidade
 }
 
-func (c *Carteira) Saldo() int {
+func (c *Carteira) Saldo() Bitcoin {
 	return c.saldo
+}
+
+type Stringer interface {
+	String() string
+}
+
+func (b Bitcoin) String() string {
+	return fmt.Sprintf("%d BTC", b)
 }
